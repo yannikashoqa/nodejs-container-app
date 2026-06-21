@@ -1,5 +1,5 @@
 # ─── Stage 1: Build / Install dependencies ────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 
 # Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
