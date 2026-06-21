@@ -1,0 +1,18 @@
+# tmas_overrides.yml
+# Use this file to document accepted risks / suppress false positives.
+# Reference: https://docs.trendmicro.com/en-us/documentation/article/trend-micro-cloud-one-container-security-tmas-about
+#
+# Pass to TMAS via: tmas scan <artifact> --override ./tmas_overrides.yml
+
+vulnerabilities:
+  exceptions:
+    # Example: suppress a specific CVE accepted as a known false positive
+    # - id: CVE-2023-XXXXX
+    #   reason: "Not exploitable in our deployment context — no user input reaches this path"
+
+secrets:
+  exceptions:
+    # Example: suppress a test/placeholder secret flagged in a fixture file
+    # - id: "generic-api-key"
+    #   path: "src/fixtures/test-data.js"
+    #   reason: "Test fixture only — not a real credential"
