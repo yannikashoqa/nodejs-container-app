@@ -13,7 +13,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # ─── Stage 2: Runtime image ───────────────────────────────────────────────────
-FROM node:20-alpine AS runtime
+FROM node:24-alpine AS runtime
 
 # Security: run as non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
