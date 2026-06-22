@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nodejs-app-ingress
+  namespace: nodejs-app
+  labels:
+    app.kubernetes.io/name: nodejs-container-app
+    app.kubernetes.io/component: ingress
+  annotations:
+    # ── nginx ingress controller annotations ──────────────────────────────────
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "10"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+    # ── TLS / cert-manager (uncomment if using cert-manager) ─────────────────
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx      # change to your ingress class (e.g. alb, traefik)
+  # ── TLS (uncomment and populate after cert-manager is installed) ───────────
+  # tls:
+  #   - hosts:
+  #       - nodejs-app.example.com
+  #     secretName: nodejs-app-tls
+  rules:
+    - host: nodejs-app.example.com    # replace with your domain or remove for path-only routing
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nodejs-app-svc
+                port:
+                  name: http

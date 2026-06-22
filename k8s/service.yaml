@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-app-svc
+  namespace: nodejs-app
+  labels:
+    app.kubernetes.io/name: nodejs-container-app
+    app.kubernetes.io/component: web
+spec:
+  type: ClusterIP        # internal-only; use LoadBalancer for cloud or pair with Ingress
+  selector:
+    app: nodejs-app
+  ports:
+    - name: http
+      port: 80           # service port (external-facing within cluster)
+      targetPort: http   # maps to containerPort named "http" (3000)
+      protocol: TCP

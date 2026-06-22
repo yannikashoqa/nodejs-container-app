@@ -1,0 +1,15 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: nodejs-app-pdb
+  namespace: nodejs-app
+  labels:
+    app.kubernetes.io/name: nodejs-container-app
+    app.kubernetes.io/component: availability
+spec:
+  # At least 1 pod must remain available during voluntary disruptions
+  # (node drain, rolling upgrades, cluster autoscaler scale-down)
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: nodejs-app
