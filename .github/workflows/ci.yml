@@ -75,7 +75,7 @@ jobs:
           echo "jq $(jq --version)"
 
       - name: TMAS – Scan repository (vulnerabilities + secrets)
-        uses: trendmicro/tmas-scan-action@v3.13
+        uses: trendmicro/tmas-scan-action@v3.1.3
         with:
           version: "2"
           vulnerabilitiesScan: true
@@ -176,7 +176,7 @@ jobs:
           echo "jq $(jq --version)"
 
       - name: TMAS – Scan container image (all scanners)
-        uses: trendmicro/tmas-scan-action@v3.13
+        uses: trendmicro/tmas-scan-action@v3.1.3
         with:
           version: "2"
           vulnerabilitiesScan: true
