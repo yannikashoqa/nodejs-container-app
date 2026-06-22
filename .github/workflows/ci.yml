@@ -59,7 +59,7 @@ jobs:
           path: repo
 
       - name: TMAS – Scan repository (vulnerabilities + secrets)
-        uses: trendmicro/tmas-scan-action@v2
+        uses: trendmicro/tmas-scan-action@v3.1.3
         with:
           version: "2"
           vulnerabilitiesScan: true
@@ -118,7 +118,7 @@ jobs:
           name: docker-image
 
       - name: TMAS – Scan container image (all scanners)
-        uses: trendmicro/tmas-scan-action@v2
+        uses: trendmicro/tmas-scan-action@v3.1.3
         with:
           version: "2"
           vulnerabilitiesScan: true
